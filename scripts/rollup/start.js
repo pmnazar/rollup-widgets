@@ -13,6 +13,8 @@ const legacy = require('rollup-plugin-legacy');
 const async = require('rollup-plugin-async');
 const ad = require('rollup-plugin-async-define');
 const string = require('rollup-plugin-string');
+const ejs = require('rollup-plugin-ejs');
+const postcss = require('rollup-plugin-postcss');
 const { asyncRimRaf } = require('./utils');
 
 process.on('unhandledRejection', err => {
@@ -20,12 +22,15 @@ process.on('unhandledRejection', err => {
 });
 
 const plugins = [
+  // postcss({
+  //   plugins: []
+  // }),
   babel({
     exclude: ['node_modules/**', '**/*.html'],
     plugins: ['external-helpers']
   }),
   commonjs({
-    include:['node_modules/**', 'src/lite-widget/app/core/libs/**'],
+    include: ['node_modules/**', 'src/lite-widget/app/core/libs/**'],
     exclude: ['node_modules/@webcomponents/webcomponentsjs/**']
   }),
   resolve({
@@ -36,31 +41,32 @@ const plugins = [
     extensions: ['.js', '.jsx']
   }),
   string({
-    include: '**/*.html',
-    exclude: ['**/index.html']
+    include: ['**/*.html', '**/*.tpl'],
+    // exclude: ['**/index.html']
   }),
-  html({
-    template: 'src/index.html',
-    filename: 'index.html'
-  }),
-  serve({
-    contentBase: ['build'],
-    host: 'localhost',
-    port: 3000,
-  }),
-  livereload({
-    watch: 'build',
-  }),
+  // html({
+  //   template: 'src/lw/smart-desktop/index.html',
+  //   filename: 'index.html',
+  //
+  // }),
+  // serve({
+  //   contentBase: ['build'],
+  //   host: 'localhost',
+  //   port: 3000,
+  // }),
+  // livereload({
+  //   watch: 'build',
+  // }),
 ];
 
 const inputOptions = {
-  // input: 'src/main.js',
-  input: 'src/lite-widget/router-smart-desktop.js',
+  input: 'src/lw/router-smart-desktop.js',
+  // input: 'src/lite-widget/router-smart-desktop.js',
   plugins,
   external: ['jquery']
 };
 const outputOptions = {
-  file: 'build/build.js',
+  file: '../1w-main/WebUI/WebContent/external/build/1worldonline/widget/build.js',
   name: 'build',
   format: 'umd',
   globals: {
