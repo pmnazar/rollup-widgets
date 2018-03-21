@@ -3,19 +3,10 @@ const resolve = require('rollup-plugin-node-resolve');
 const commonjs = require('rollup-plugin-commonjs');
 const chalk = require('chalk');
 const babel = require('rollup-plugin-babel');
-const html = require('rollup-plugin-fill-html');
 const livereload = require('rollup-plugin-livereload');
 const serve = require('rollup-plugin-serve');
 const uglify = require('rollup-plugin-uglify');
-const alias = require('rollup-plugin-alias');
-const replace = require('rollup-plugin-replace');
-const legacy = require('rollup-plugin-legacy');
-const async = require('rollup-plugin-async');
-const ad = require('rollup-plugin-async-define');
 const string = require('rollup-plugin-string');
-const ejs = require('rollup-plugin-ejs');
-const postcss = require('rollup-plugin-postcss');
-const { asyncRimRaf } = require('./utils');
 
 process.on('unhandledRejection', err => {
   throw err;
